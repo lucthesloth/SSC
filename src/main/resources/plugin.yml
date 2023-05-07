@@ -1,0 +1,4 @@
+name: StructureSeedCompatibility
+version: '${version}'
+main: me.lucthesloth.ssc.StructureSeedCompatibility
+api-version: 1.19
