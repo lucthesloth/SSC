@@ -1,0 +1,5 @@
+SSC: !!me.lucthesloth.ssc.Configuration
+  DisableVanillaSlimeSpawningInRegions: true
+  regions: []
+  slimeChunkSpawning: true
+  worldName: world
