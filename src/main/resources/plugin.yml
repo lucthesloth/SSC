@@ -2,3 +2,8 @@ name: StructureSeedCompatibility
 version: '${version}'
 main: me.lucthesloth.ssc.StructureSeedCompatibility
 api-version: 1.19
+author: lucthesloth
+load: POSTWORLD
+commands:
+  scap:
+    description: test
