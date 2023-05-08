@@ -1,28 +1,18 @@
 package me.lucthesloth.ssc;
 
-import org.bukkit.Bukkit;
-
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Configuration {
-    public boolean slimeChunkSpawning = true;
-    public List<Region> regions = Collections.emptyList();
-    public boolean DisableVanillaSlimeSpawningInRegions = true;
-    public String worldName = "world";
-    public Configuration() {
-        regions = new LinkedList<>();
-        regions.add(new Region(-10000, 10000, -10000, 10000, 1938308378592162354L));
+    public static String worldName(){
+        return StructureSeedCompatibility.instance.getConfig().getString("worldName", "world");
     }
-    public Configuration(boolean slimeChunkSpawning, List<Region> regions, boolean DisableVanillaSlimeSpawningInRegions, String worldName) {
-        this.slimeChunkSpawning = slimeChunkSpawning;
-        this.regions = regions;
-        this.DisableVanillaSlimeSpawningInRegions = DisableVanillaSlimeSpawningInRegions;
-        this.worldName = worldName;
+    public static boolean DisableVanillaSlimeSpawningInRegions(){
+        return StructureSeedCompatibility.instance.getConfig().getBoolean("DisableVanillaSlimeSpawningInRegions", true);
     }
-
-    public Region findRegion(int x, int z) {
+    public static Region findRegion(int x, int z) {
+        @SuppressWarnings("unchecked") List<Region> regions = (List<Region>) StructureSeedCompatibility.instance.getConfig().getList("slimeRegions", Collections.emptyList());
         for (Region region : regions) {
             if (region.isInside(x, z) != null) {
                 return region;
@@ -30,7 +20,7 @@ public class Configuration {
         }
         return null;
     }
-    public Region findRegion(org.bukkit.Location location) {
+    public static Region findRegion(org.bukkit.Location location) {
         return findRegion(location.getBlockX(), location.getBlockZ());
     }
     public static class Region {

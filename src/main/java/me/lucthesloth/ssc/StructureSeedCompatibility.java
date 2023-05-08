@@ -6,14 +6,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class StructureSeedCompatibility extends JavaPlugin {
     public static StructureSeedCompatibility instance;
-    public Configuration config;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
         instance = this;
 
-        config = this.getConfig().getObject("SSC", Configuration.class, new Configuration());
-
+        this.saveDefaultConfig();
         this.registerCommands();
         this.registerListeners();
         this.registerAsyncRunnables();
@@ -22,7 +21,6 @@ public final class StructureSeedCompatibility extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        this.getConfig().set("SSC", config);
         this.saveConfig();
     }
 

@@ -1,15 +1,15 @@
 package me.lucthesloth.ssc.runnables;
 
+import me.lucthesloth.ssc.Configuration;
 import me.lucthesloth.ssc.StructureSeedCompatibility;
 import me.lucthesloth.ssc.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
-import org.bukkit.entity.*;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Slime;
 
 import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 public class SlimeSpawner implements Runnable{
     private final Random random = new Random();
@@ -32,7 +32,7 @@ public class SlimeSpawner implements Runnable{
         Location temp;
         while (!queue.isEmpty()) {
             Utils.KeyPair keyPair = queue.poll();
-            chunk = StructureSeedCompatibility.instance.getServer().getWorld(StructureSeedCompatibility.instance.config.worldName).getChunkAt(keyPair.x, keyPair.z);
+            chunk = StructureSeedCompatibility.instance.getServer().getWorld(Configuration.worldName()).getChunkAt(keyPair.x, keyPair.z);
             if (chunk.isLoaded()) {
                 if (random.nextInt(10) == 0) {
                     for (int i = 0; i < 10; i++) {

@@ -1,5 +1,9 @@
-SSC: !!me.lucthesloth.ssc.Configuration
-  DisableVanillaSlimeSpawningInRegions: true
-  regions: []
-  slimeChunkSpawning: true
-  worldName: world
+#Should current seed spawn slimes inside regions managed by the plugin?
+DisableVanillaSlimeSpawningInRegions: true
+#Should Slime Regions spawn slimes by custom logic?
+slimeChunkSpawning: true
+slimeRegions: []
+#Husks Regions
+huskRegions: []
+#World name for plugin logic. If you have multiple worlds, you can specify which world to use.
+worldName: world
