@@ -1,8 +1,6 @@
 package me.lucthesloth.ssc.utils;
 
-import org.bukkit.Chunk;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.Leaves;
 import org.bukkit.util.BoundingBox;
@@ -12,6 +10,8 @@ import java.util.Random;
 import java.util.function.Consumer;
 
 public class Slime {
+
+    private static final Random rnd = new Random();
 
     /**
      * Checks if a slime can spawn at the given location,
@@ -70,5 +70,23 @@ public class Slime {
                         (int) (z * 0x5f24f) ^ 0x3ad8025fL
         );
         return rnd.nextInt(10) == 0;
+    }
+
+    /**
+     * Gets the random size of slime (Possible returns are limited to 0,1 and 4)
+     * With weights, 0 has a 16% chance, 1 has a 34% chance and 4 has a 50% chance
+     * if difficulty is set to HARD otherwise it's a pure random chance.
+     * @return The size of the slime
+     */
+    public static int getSlimeSize(@Nullable Difficulty difficulty){
+        int r;
+        if (difficulty != Difficulty.HARD) {
+            r = rnd.nextInt(3);
+            return r == 2 ? 4 : r;
+        }
+        r = rnd.nextInt(100);
+        if (r < 16) return 0;
+        else if (r < 50) return 1;
+        else return 4;
     }
 }

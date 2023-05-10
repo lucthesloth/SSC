@@ -57,9 +57,8 @@ public class SlimeSpawner implements Runnable{
             if (p.isEmpty()) return;
             if (p.get().getLocation().getNearbyEntitiesByType(Slime.class, 96).stream().count() >= 20) return;
             if (!loc.getNearbyLivingEntities(3).isEmpty()) return;
-            int size = random.nextInt(3);
             Slime e = ((Slime) loc.getWorld().spawnEntity(loc, org.bukkit.entity.EntityType.SLIME));
-            e.setSize(size == 2 ? 4 : size);
+            e.setSize(me.lucthesloth.ssc.utils.Slime.getSlimeSize(loc.getWorld().getDifficulty()));
             Bukkit.getLogger().info(String.format("Slime spawned at %d %d %d", loc.getBlockX(), loc.getBlockY(), loc.getBlockZ()));
         });
 
